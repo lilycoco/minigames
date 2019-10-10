@@ -1,7 +1,15 @@
 import React from 'react'
 
-const Landing = () => {
-  return <div>timegage</div>
-}
-
-export default Landing
+export const TimeGage = () => (
+  <div style={{ padding: '15px' }}>
+    <canvas
+      style={{
+        width: '100%',
+        height: '20px',
+        backgroundColor: 'white',
+        border: 'double 5px blue',
+        borderRadius: '10px',
+      }}
+    ></canvas>
+  </div>
+)

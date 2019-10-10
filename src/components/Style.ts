@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 
-export const Icon = styled.img`
+export const TopIcon = styled.img`
   display: block;
-  width: 24px;
-  height: 24px;
+  width: 50px;
+  height: 5opx;
   object-fit: cover;
+  margin: 30px auto 0;
 `
-
 export const GameContainer = styled.div`
   width: calc(100vmin - 60px);
   height: calc(100vmin - 60px);
