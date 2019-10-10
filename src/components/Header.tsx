@@ -6,7 +6,7 @@ class Header extends Component {
       <div style={{ backgroundColor: 'white' }}>
         <p
           className='text-center mt-4 mb-5'
-          style={{ fontFamily: 'Nikukyu', fontSize: '200%', color: 'red' }}
+          style={{ fontFamily: 'Nico Moji', fontSize: '200%', color: 'red' }}
         >
           カップラーメンタイマー
         </p>
