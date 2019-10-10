@@ -32,5 +32,5 @@
     "sourceMap": true
   },
   "exclude": ["node_modules", "build"],
-  "include": ["**/*.ts", "**/*.tsx"]
+  "include": ["**/*.ts", "**/*.tsx", "src/serviceWorker.js"]
 }

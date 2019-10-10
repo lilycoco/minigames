@@ -1,7 +1,7 @@
 import React from 'react'
 import { GameContainer } from '../Style'
 
-const Landing = () => {
+const Game = () => {
   return (
     <GameContainer style={{ backgroundColor: 'black' }}>
       <div>invader</div>
@@ -9,4 +9,4 @@ const Landing = () => {
   )
 }
 
-export default Landing
+export default Game
