@@ -7,7 +7,7 @@ export const TimeGage = () => (
         width: '100%',
         height: '20px',
         backgroundColor: 'white',
-        border: 'double 5px blue',
+        border: 'double 5px #7f1b00',
         borderRadius: '10px',
       }}
     ></canvas>
