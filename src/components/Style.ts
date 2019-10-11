@@ -33,19 +33,20 @@ export const Charactor = styled.img`
   left: 4%;
   transform: scale(-1, 1); //画像反転
   animation: ${fluffy} 2.5s ease infinite;
+  // ${({ size }: any) => size};
 `
 export const Egg2 = styled.img`
-  width: 18%;
-  height: 15%;
+  width: 15vw;
+  height: 13vw;
   position: absolute;
-  bottom: 5%;
-  right: 20%;
+  bottom: 5vw;
+  right: 20vw;
   transform-origin: bottom center;
   animation: ${swing} 1s ease both infinite;
 `
 export const TopIcon = styled.img`
   display: block;
-  width: 10%;
+  width: 10vw;
   height: auto;
   object-fit: cover;
   margin: 0 auto;
@@ -65,8 +66,8 @@ export const Egg3 = styled.img`
   right: 5%;
 `
 export const GameContainer = styled.div`
-  width: calc(100vmin - 30px);
-  height: calc(100vmin - 30px);
+  width: calc(100vw - 30px);
+  height: calc(100vw - 30px);
   max-width: 500px;
   max-height:500px
   margin: auto;
