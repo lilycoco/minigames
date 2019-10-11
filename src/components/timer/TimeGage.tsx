@@ -11,6 +11,8 @@ export const TimeGage = () => (
         border: 'solid 4px #7f1b00',
         borderRadius: '10px',
         position: 'relative',
+        maxWidth: '500px',
+        margin: 'auto',
       }}
     >
       <div

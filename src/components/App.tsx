@@ -11,6 +11,7 @@ const App = () => (
       backgroundImage: `url(${background})`,
       backgroundRepeat: 'repeat',
       backgroundSize: 'contain',
+      fontFamily: 'Nico Moji',
     }}
   >
     <BrowserRouter>
