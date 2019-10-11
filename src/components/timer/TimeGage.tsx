@@ -2,7 +2,7 @@ import React from 'react'
 import gakki from '../../static/gif/gakki_5.gif'
 
 export const TimeGage = () => (
-  <div style={{ padding: '15px 25px 100px', margin: '20px 0 0' }}>
+  <div style={{ padding: '10px 15px 100px', margin: '20px 0 0' }}>
     <div
       style={{
         width: '100%',

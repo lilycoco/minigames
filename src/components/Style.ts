@@ -37,10 +37,10 @@ export const Egg3 = styled.img`
   right: 5%;
 `
 export const GameContainer = styled.div`
-  width: calc(100vmin - 60px);
+  width: calc(100vmin - 30px);
+  height: calc(100vmin - 30px);
   max-width: 500px;
   max-height:500px
-  height: calc(100vmin - 60px);
   margin: auto;
   position: relative;
   background-image: url(${background});
