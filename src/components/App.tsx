@@ -4,6 +4,7 @@ import { Header } from './Header'
 import { HiyokoGame } from './hiyoko/Game'
 import { TimeGage } from './timer/TimeGage'
 import background from '../static/img/background.png'
+import { GameContainer } from './Style'
 
 const App = () => (
   <div
@@ -16,8 +17,10 @@ const App = () => (
   >
     <BrowserRouter>
       <Header />
-      <Route exact path='/hiyoko' component={HiyokoGame} />
-      {/* <Route path="/surveys/new" component={SurveyNew} /> */}
+      <GameContainer>
+        <Route exact path='/hiyoko' component={HiyokoGame} />
+        {/* <Route path="/surveys/new" component={SurveyNew} /> */}
+      </GameContainer>
       <TimeGage />
     </BrowserRouter>
   </div>
