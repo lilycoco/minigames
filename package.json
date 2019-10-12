@@ -21,6 +21,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "styled-components": "^4.4.0",
+    "styled-media-query": "^2.1.2",
     "typescript": "^3.5.3"
   },
   "scripts": {

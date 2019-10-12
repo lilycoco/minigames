@@ -25,6 +25,7 @@ export const EggCatch = () => {
         setHiyokoDirection(1)
     }
   }
+
   useEffect(() => {
     window.addEventListener('keydown', downHandler)
     return () => {
@@ -42,7 +43,7 @@ export const EggCatch = () => {
         alt='hiyoko'
         style={{
           left: hiyokoPosition + 'vw',
-          transform: 'scale(' + hiyokoDirection + ', 1 )',
+          transform: 'scaleX(' + hiyokoDirection + ')',
         }}
       />
       {start || <StartButtonFrame toggleStart={toggleStart} />}
