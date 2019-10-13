@@ -49,8 +49,8 @@ export const TimeGage = ({
 
   useEffect(() => {
     if (duration < 100) {
-      requestId = requestAnimationFrame(render)
-      console.log(duration, '🙂')
+      // requestId = requestAnimationFrame(render)
+      // console.log(duration, '🙂')
     }
     return () => {
       cancelAnimationFrame(requestId)

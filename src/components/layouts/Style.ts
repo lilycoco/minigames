@@ -18,6 +18,7 @@ export const Body = styled.div`
   background-repeat: repeat;
   background-size: contain;
   font-family: 'Nico Moji';
+  color: #7f1b00;
   position: absolute;
   top: 0;
   right: 0;

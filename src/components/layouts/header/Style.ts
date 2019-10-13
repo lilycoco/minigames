@@ -24,7 +24,6 @@ export const TopIcon = styled.img`
 export const HeaderTitle = styled.p`
   font-size: 4.6vw;
   margin: 0;
-  color: #7f1b00;
   text-align: center !important;
   ${media.greaterThan('medium')`
     font-size: 2.8vw;

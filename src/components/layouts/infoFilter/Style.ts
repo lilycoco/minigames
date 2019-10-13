@@ -45,7 +45,6 @@ export const StartButton = styled.button`
 `}
 `
 export const Info = styled.p`
-  color: #7f1b00;
   font-size: 7vw;
   ${media.greaterThan('medium')`
     font-size: 4vw;

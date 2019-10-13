@@ -1,29 +1,30 @@
 import React, { useState, useEffect } from 'react'
-import { Charactor, RawEgg, DroppingEgg, BrokenEgg } from './Style'
+import { Charactor, RawEgg, DroppingEgg, BrokenEgg, Point } from './Style'
 import hiyoko from '../../static/icon/hiyoko.png'
 import rawEgg from '../../static/icon/egg.png'
 import droppingEgg from '../../static/icon/egg_0.png'
 import brokenEgg from '../../static/icon/broken_egg_2.png'
 
 export const Items = () => {
-  const [hiyokoPosition, setHiyokoPosition] = useState(0)
-  const [hiyokoDirection, setHiyokoDirection] = useState(1)
-  const [hiyokoActive, setHiyokoActive] = useState(false)
+  const [hiyokoStatus, setHiyokoStatus] = useState({ x: 0, direction: 1, active: false })
+  // const [eggStatus, setEggStatus] = useState([{ x: 0, y: 0 }])
+
+  const [point, setPoint] = useState(5)
 
   const downHandler = ({ key }: KeyboardEvent) => {
-    setHiyokoActive(true)
+    setHiyokoStatus((p) => ({ ...p, active: true }))
     switch (key) {
       case 'ArrowRight':
-        setHiyokoPosition((p: number) => (p < 75 ? p + 1 : p))
-        setHiyokoDirection(-1)
+        setHiyokoStatus((p) => ({ ...p, x: p.x < 75 ? p.x + 1 : p.x, direction: -1 }))
         break
       case 'ArrowLeft':
-        setHiyokoPosition((p: number) => (p > 0 ? p - 1 : p))
-        setHiyokoDirection(1)
+        setHiyokoStatus((p) => ({ ...p, x: p.x > 0 ? p.x - 1 : p.x, direction: 1 }))
     }
     // setHiyokoActive(false)
   }
   useEffect(() => {
+    console.log(setPoint)
+
     window.addEventListener('keydown', downHandler)
     return () => {
       window.removeEventListener('keydown', downHandler)
@@ -35,14 +36,18 @@ export const Items = () => {
       <RawEgg src={rawEgg} alt='rawEgg' />
       <DroppingEgg src={droppingEgg} alt='droppingEgg' />
       <BrokenEgg src={brokenEgg} alt='brokenEgg' />
+      <Point>
+        {point}
+        <span style={{ fontSize: '50%' }}>てん</span>
+      </Point>
       <Charactor
         src={hiyoko}
         alt='hiyoko'
         style={{
-          left: hiyokoPosition + '%',
-          transform: 'scaleX(' + hiyokoDirection + ')',
+          left: hiyokoStatus.x + '%',
+          transform: 'scaleX(' + hiyokoStatus.direction + ')',
         }}
-        hiyokoActive={hiyokoActive}
+        hiyokoStatus={hiyokoStatus}
       />
     </div>
   )
