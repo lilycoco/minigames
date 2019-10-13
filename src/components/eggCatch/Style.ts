@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
 const fluffy = keyframes`{
   0% { transform:translateY(0) }
@@ -17,6 +17,7 @@ const dropEgg = keyframes`{
   100% { transform:translateY(0%) }
 }`
 const swing = keyframes`{
+  0% { transform: rotate(0deg); } 
   20% { transform: rotate(10deg); } 
   40% { transform: rotate(-5deg); } 
   60% { transform: rotate(5deg); } 
@@ -24,34 +25,38 @@ const swing = keyframes`{
   100% { transform: rotate(0deg); } 
 }`
 
-export const Charactor = styled.img`
+export const Charactor = styled.img<{ hiyokoActive: boolean }>`
   width: 25%;
   height: auto;
   position: absolute;
   bottom: 4%;
+  transform-origin: bottom center;
+  animation: ${({ hiyokoActive }) =>
+    hiyokoActive
+      ? ''
+      : css`
+          ${swing} 1s ease infinite none;
+        `} ;
   // transform: scale(${(p) => (p.key ? p.key : '-1')}, 1)
-  // transform-origin: bottom center;
-  // animation: ${swing} 1s ease both infinite;
   // animation: ${fluffy} 2.5s ease infinite;
 `
-export const Egg2 = styled.img`
+export const DroppingEgg = styled.img`
   width: 15%;
   height: 13%;
   position: absolute;
   bottom: 5%;
   right: 20%;
   transform-origin: bottom center;
-  // animation: ${swing} 1s ease both infinite;
   animation: ${dropEgg} 2s ease both infinite;
 `
-export const Egg = styled.img`
+export const RawEgg = styled.img`
   width: 15%;
   height: auto;
   position: absolute;
   bottom: 3%;
   left: 30%;
 `
-export const Egg3 = styled.img`
+export const BrokenEgg = styled.img`
   width: 20%;
   height: auto;
   position: absolute;

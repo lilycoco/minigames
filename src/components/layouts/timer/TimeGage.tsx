@@ -37,7 +37,7 @@ export const TimeGage = ({
 
     if (gameRunning) {
       if (duration < 100) {
-        setDuration((p) => (p < 10 ? (((currentTime - startTime) / 1000) * 5) / 9 : 100))
+        setDuration((p) => (p < 100 ? (((currentTime - startTime) / 1000) * 5) / 9 : 100))
         console.log(duration, '🙂')
       } else if (duration === 100) {
         toggleRunning()
@@ -46,8 +46,12 @@ export const TimeGage = ({
       }
     }
   }
+
   useEffect(() => {
-    render()
+    if (duration < 100) {
+      requestId = requestAnimationFrame(render)
+      console.log(duration, '🙂')
+    }
     return () => {
       cancelAnimationFrame(requestId)
     }
