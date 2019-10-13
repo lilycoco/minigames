@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import gakki1 from '../../static/gif/gakki_1.gif'
-import gakki2 from '../../static/gif/gakki_2.gif'
-import gakki3 from '../../static/gif/gakki_3.gif'
-import gakki4 from '../../static/gif/gakki_4.gif'
-import gakki5 from '../../static/gif/gakki_5.gif'
+import gakki1 from '../../../static/gif/gakki_1.gif'
+import gakki2 from '../../../static/gif/gakki_2.gif'
+import gakki3 from '../../../static/gif/gakki_3.gif'
+import gakki4 from '../../../static/gif/gakki_4.gif'
+import gakki5 from '../../../static/gif/gakki_5.gif'
 import { GageBorder, GageLine, Gif } from './Style'
 
-export const TimeGage = ({ gameRunning }: { gameRunning: boolean }) => {
+export const TimeGage = ({
+  gameRunning,
+  toggleRunning,
+}: {
+  gameRunning: boolean
+  toggleRunning: () => void
+}) => {
   const [duration, setDuration] = useState(0)
-  const startTime = Date.now()
-  let requestId: any
-
-  const render = () => {
-    requestId = requestAnimationFrame(render)
-    const currentTime = Date.now()
-    setDuration((p) => (p < 100 ? (((currentTime - startTime) / 1000) * 5) / 9 : p))
-  }
-
   const addGif = () => {
     if (duration > 0 && duration < 5) {
       return <Gif src={gakki1} alt='gakki' style={{ left: '0' }} />
@@ -31,12 +28,26 @@ export const TimeGage = ({ gameRunning }: { gameRunning: boolean }) => {
     }
   }
 
-  useEffect(() => {
-    if (gameRunning && duration < 100) {
-      render()
-    } else {
-      cancelAnimationFrame(requestId)
+  const startTime = Date.now()
+  let requestId: any
+
+  const render = () => {
+    requestId = requestAnimationFrame(render)
+    const currentTime = Date.now()
+
+    if (gameRunning) {
+      if (duration < 100) {
+        setDuration((p) => (p < 10 ? (((currentTime - startTime) / 1000) * 5) / 9 : 100))
+        console.log(duration, '🙂')
+      } else if (duration === 100) {
+        toggleRunning()
+        console.log('🌠')
+        cancelAnimationFrame(requestId)
+      }
     }
+  }
+  useEffect(() => {
+    render()
     return () => {
       cancelAnimationFrame(requestId)
     }

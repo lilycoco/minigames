@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Charactor, Egg, Egg2, Egg3 } from './Style'
 import { GameContainer } from '../layouts/Style'
-import { TimeGage } from '../timer/TimeGage'
-
+import { TimeGage } from '../layouts/timer/TimeGage'
+import { InfoFilter } from '../layouts/infoFilter/InfoFilter'
 import hiyoko from '../../static/icon/hiyoko.png'
 import egg from '../../static/icon/egg.png'
 import egg0 from '../../static/icon/egg_0.png'
 import egg1 from '../../static/icon/broken_egg_2.png'
-import { StartButtonFrame } from '../layouts/StartButtonFrame'
 
 export const EggCatch = () => {
   const [hiyokoPosition, setHiyokoPosition] = useState(0)
@@ -16,7 +15,7 @@ export const EggCatch = () => {
 
   // const [eggHeight, setEggHeight] = useState(1)
 
-  const toggleStart = () => setGameRunning(!gameRunning)
+  const toggleRunning = () => setGameRunning(!gameRunning)
 
   const downHandler = ({ key }: KeyboardEvent) => {
     switch (key) {
@@ -52,13 +51,13 @@ export const EggCatch = () => {
           }}
         />
         {gameRunning || (
-          <StartButtonFrame
-            toggleStart={toggleStart}
-            gameInfo={'おちてくるたまごをキャッチしよう！'}
+          <InfoFilter
+            toggleRunning={toggleRunning}
+            gameStartInfo={'おちてくるたまごをキャッチしよう！'}
           />
         )}
       </GameContainer>
-      <TimeGage gameRunning={gameRunning} />
+      <TimeGage gameRunning={gameRunning} toggleRunning={toggleRunning} />
     </div>
   )
 }

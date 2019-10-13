@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header } from './Header'
+import { Header } from './header/Header'
 import { Body } from './Style'
 
 export const Layout = ({ children }: { children: React.ReactNode }) => (
