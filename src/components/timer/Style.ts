@@ -12,7 +12,6 @@ export const GageBorder = styled.div`
   box-shadow: 0 0 5px gray;
 `
 export const GageLine = styled.div`
-  // width: 80%;
   height: 12px;
   background-color: #f39700;
   border-radius: 10px;

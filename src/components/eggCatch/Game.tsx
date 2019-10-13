@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { Charactor, Egg, Egg2, Egg3 } from './Style'
+import { GameContainer } from '../layouts/Style'
+import { TimeGage } from '../timer/TimeGage'
+
 import hiyoko from '../../static/icon/hiyoko.png'
 import egg from '../../static/icon/egg.png'
 import egg0 from '../../static/icon/egg_0.png'
 import egg1 from '../../static/icon/broken_egg_2.png'
-import { StartButtonFrame } from './StartButtonFrame'
+import { StartButtonFrame } from '../layouts/StartButtonFrame'
 
 export const EggCatch = () => {
   const [hiyokoPosition, setHiyokoPosition] = useState(0)
   const [hiyokoDirection, setHiyokoDirection] = useState(1)
-  const [start, setStart] = useState(false)
+  const [gameRunning, setGameRunning] = useState(false)
+
   // const [eggHeight, setEggHeight] = useState(1)
 
-  const toggleStart = () => setStart(!start)
+  const toggleStart = () => setGameRunning(!gameRunning)
 
   const downHandler = ({ key }: KeyboardEvent) => {
     switch (key) {
@@ -35,18 +39,26 @@ export const EggCatch = () => {
 
   return (
     <div>
-      <Egg src={egg} alt='egg' />
-      <Egg2 src={egg0} alt='egg0' />
-      <Egg3 src={egg1} alt='egg1' />
-      <Charactor
-        src={hiyoko}
-        alt='hiyoko'
-        style={{
-          left: hiyokoPosition + 'vw',
-          transform: 'scaleX(' + hiyokoDirection + ')',
-        }}
-      />
-      {start || <StartButtonFrame toggleStart={toggleStart} />}
+      <GameContainer>
+        <Egg src={egg} alt='egg' />
+        <Egg2 src={egg0} alt='egg0' />
+        <Egg3 src={egg1} alt='egg1' />
+        <Charactor
+          src={hiyoko}
+          alt='hiyoko'
+          style={{
+            left: hiyokoPosition + 'vw',
+            transform: 'scaleX(' + hiyokoDirection + ')',
+          }}
+        />
+        {gameRunning || (
+          <StartButtonFrame
+            toggleStart={toggleStart}
+            gameInfo={'おちてくるたまごをキャッチしよう！'}
+          />
+        )}
+      </GameContainer>
+      <TimeGage gameRunning={gameRunning} />
     </div>
   )
 }

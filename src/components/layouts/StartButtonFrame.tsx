@@ -1,11 +1,17 @@
 import React from 'react'
 import { InfoFlame, Info, StartButton, ButtonWrapper } from './Style'
 
-export const StartButtonFrame = ({ toggleStart }: { toggleStart: () => void }) => (
+export const StartButtonFrame = ({
+  toggleStart,
+  gameInfo,
+}: {
+  toggleStart: () => void
+  gameInfo: string
+}) => (
   <InfoFlame>
     <ButtonWrapper>
       <StartButton onClick={toggleStart}>スタート</StartButton>
-      <Info>おちてくるたまごをキャッチしよう！</Info>
+      <Info>{gameInfo}</Info>
     </ButtonWrapper>
   </InfoFlame>
 )

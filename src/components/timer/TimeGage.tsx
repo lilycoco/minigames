@@ -6,7 +6,7 @@ import gakki4 from '../../static/gif/gakki_4.gif'
 import gakki5 from '../../static/gif/gakki_5.gif'
 import { GageBorder, GageLine, Gif } from './Style'
 
-export const TimeGage = () => {
+export const TimeGage = ({ gameRunning }: { gameRunning: boolean }) => {
   const [duration, setDuration] = useState(0)
   const startTime = Date.now()
   let requestId: any
@@ -20,22 +20,28 @@ export const TimeGage = () => {
   const addGif = () => {
     if (duration > 0 && duration < 5) {
       return <Gif src={gakki1} alt='gakki' style={{ left: '0' }} />
-    } else if (duration > 20 && duration < 25) {
-      return <Gif src={gakki2} alt='gakki' style={{ left: '10%' }} />
-    } else if (duration > 40 && duration < 45) {
+    } else if (duration > 30 && duration < 35) {
+      return <Gif src={gakki2} alt='gakki' style={{ left: '20%' }} />
+    } else if (duration > 50 && duration < 55) {
       return <Gif src={gakki3} alt='gakki' style={{ left: '30%' }} />
-    } else if (duration > 60 && duration < 65) {
-      return <Gif src={gakki4} alt='gakki' style={{ left: '50%' }} />
+    } else if (duration > 80 && duration < 85) {
+      return <Gif src={gakki4} alt='gakki' style={{ left: '60%' }} />
     } else if (duration > 95 && duration < 100) {
       return <Gif src={gakki5} alt='gakki' style={{ left: '70%' }} />
     }
   }
+
   useEffect(() => {
-    render()
+    if (gameRunning && duration < 100) {
+      render()
+    } else {
+      cancelAnimationFrame(requestId)
+    }
     return () => {
       cancelAnimationFrame(requestId)
     }
-  }, [])
+  }, [gameRunning])
+
   return (
     <div style={{ padding: '10px 15px 100px', margin: '20px 0 0' }}>
       <GageBorder>
