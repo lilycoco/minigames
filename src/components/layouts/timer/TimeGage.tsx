@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import { GageBorder, GageLine, Gif } from './Style'
 import gakki1 from '../../../static/gif/gakki_1.gif'
 import gakki2 from '../../../static/gif/gakki_2.gif'
 import gakki3 from '../../../static/gif/gakki_3.gif'
 import gakki4 from '../../../static/gif/gakki_4.gif'
 import gakki5 from '../../../static/gif/gakki_5.gif'
-import { GageBorder, GageLine, Gif } from './Style'
 
 export const TimeGage = ({
   gameRunning,
@@ -14,6 +14,8 @@ export const TimeGage = ({
   toggleRunning: () => void
 }) => {
   const [duration, setDuration] = useState(0)
+  const renderRef: any = useRef()
+
   const addGif = () => {
     if (duration > 0 && duration < 5) {
       return <Gif src={gakki1} alt='gakki' style={{ left: '0' }} />
@@ -29,31 +31,32 @@ export const TimeGage = ({
   }
 
   const startTime = Date.now()
-  let requestId: any
 
   const render = () => {
-    requestId = requestAnimationFrame(render)
+    renderRef.current = requestAnimationFrame(render)
     const currentTime = Date.now()
+    setDuration((p) => (p < 100 ? (((currentTime - startTime) / 1000) * 5) / 9 : 100))
 
-    if (gameRunning) {
-      if (duration < 100) {
-        setDuration((p) => (p < 100 ? (((currentTime - startTime) / 1000) * 5) / 9 : 100))
-        console.log(duration, '🙂')
-      } else if (duration === 100) {
-        toggleRunning()
-        console.log('🌠')
-        cancelAnimationFrame(requestId)
-      }
-    }
+    // if (gameRunning) {
+    //   if (duration < 100) {
+    //     setDuration((p) => (p < 100 ? (((currentTime - startTime) / 1000) * 5) / 9 : 100))
+    //     console.log(duration, '🙂')
+    //   } else if (duration === 100) {
+    //     toggleRunning()
+    //     console.log('🌠')
+    //     cancelAnimationFrame(renderRef.current)
+    //   }
+    // }
   }
 
   useEffect(() => {
-    if (duration < 100) {
-      // requestId = requestAnimationFrame(render)
-      // console.log(duration, '🙂')
+    console.log(duration, toggleRunning, '🙂')
+
+    if (gameRunning && duration < 100) {
+      renderRef.current = requestAnimationFrame(render)
     }
     return () => {
-      cancelAnimationFrame(requestId)
+      cancelAnimationFrame(renderRef.current)
     }
   }, [gameRunning])
 

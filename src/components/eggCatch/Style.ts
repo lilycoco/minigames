@@ -40,30 +40,6 @@ export const Charactor = styled.img<{ hiyokoStatus: any }>`
   // transform: scale(${(p) => (p.key ? p.key : '-1')}, 1)
   // animation: ${fluffy} 2.5s ease infinite;
 `
-export const DroppingEgg = styled.img`
-  width: 15%;
-  height: 13%;
-  position: absolute;
-  top: 0;
-  right: 20%;
-  transform-origin: top center;
-  animation: ${swing} 1s ease infinite;
-  // animation: ${dropEgg} 2s ease both infinite;
-`
-export const RawEgg = styled.img`
-  width: 15%;
-  height: auto;
-  position: absolute;
-  bottom: 3%;
-  left: 30%;
-`
-export const BrokenEgg = styled.img`
-  width: 20%;
-  height: auto;
-  position: absolute;
-  bottom: 4%;
-  right: 5%;
-`
 export const Point = styled.div`
   font-size: 10vw;
   height: auto;
@@ -76,4 +52,11 @@ export const Point = styled.div`
   ${media.greaterThan('large')`
   font-size: 5vw;
 `}
+`
+
+export const DroppingEgg = styled.img`
+  position: absolute;
+  transform-origin: top center;
+  animation: ${swing} 1s ease 2;
+  // animation: ${dropEgg} 2s ease both infinite;
 `

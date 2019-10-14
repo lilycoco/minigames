@@ -11,7 +11,7 @@ export const EggCatch = () => {
   return (
     <div>
       <GameContainer>
-        <Items />
+        <Items gameRunning={gameRunning} />
         {gameRunning || (
           <InfoFilter
             toggleRunning={toggleRunning}
