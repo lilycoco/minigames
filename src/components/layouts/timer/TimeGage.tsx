@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { GageBorder, GageLine, Gif } from './Style'
 import gakki1 from '../../../static/gif/gakki_1.gif'
 import gakki2 from '../../../static/gif/gakki_2.gif'
@@ -6,15 +6,19 @@ import gakki3 from '../../../static/gif/gakki_3.gif'
 import gakki4 from '../../../static/gif/gakki_4.gif'
 import gakki5 from '../../../static/gif/gakki_5.gif'
 
+const MAX_DURATION = 100
+const MAX_MILLISEC = 180 * 1000
+
 export const TimeGage = ({
   gameRunning,
   toggleRunning,
+  startTime,
 }: {
   gameRunning: boolean
   toggleRunning: () => void
+  startTime: number
 }) => {
   const [duration, setDuration] = useState(0)
-  const renderRef: any = useRef()
 
   const addGif = () => {
     if (duration > 0 && duration < 5) {
@@ -30,35 +34,19 @@ export const TimeGage = ({
     }
   }
 
-  const startTime = Date.now()
-
-  const render = () => {
-    renderRef.current = requestAnimationFrame(render)
-    const currentTime = Date.now()
-    setDuration((p) => (p < 100 ? (((currentTime - startTime) / 1000) * 5) / 9 : 100))
-
-    // if (gameRunning) {
-    //   if (duration < 100) {
-    //     setDuration((p) => (p < 100 ? (((currentTime - startTime) / 1000) * 5) / 9 : 100))
-    //     console.log(duration, '🙂')
-    //   } else if (duration === 100) {
-    //     toggleRunning()
-    //     console.log('🌠')
-    //     cancelAnimationFrame(renderRef.current)
-    //   }
-    // }
-  }
-
   useEffect(() => {
-    console.log(duration, toggleRunning, '🙂')
-
-    if (gameRunning && duration < 100) {
-      renderRef.current = requestAnimationFrame(render)
+    if (gameRunning) {
+      if (duration < MAX_DURATION) {
+        requestAnimationFrame(() =>
+          setDuration(() =>
+            Math.min(((Date.now() - startTime) / MAX_MILLISEC) * MAX_DURATION, MAX_DURATION),
+          ),
+        )
+      } else if (duration === MAX_DURATION) {
+        toggleRunning()
+      }
     }
-    return () => {
-      cancelAnimationFrame(renderRef.current)
-    }
-  }, [gameRunning])
+  }, [gameRunning, duration])
 
   return (
     <div style={{ padding: '10px 15px 100px', margin: '20px 0 0' }}>

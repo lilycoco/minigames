@@ -34,10 +34,9 @@ export const Items = ({ gameRunning }: { gameRunning: boolean }) => {
       <Charactor
         src={hiyoko}
         alt='hiyoko'
-        style={{
-          left: hiyokoStatus.left + '%',
-          transform: 'scaleX(' + hiyokoStatus.direction + ')',
-        }}
+        // transform: scale(${(p) => (p.key ? p.key : '-1')}, 1)
+        // animation: ${fluffy} 2.5s ease infinite;
+        // animation: ${dropEgg} 2s ease both infinite;
         hiyokoStatus={hiyokoStatus}
       />
       <Point>

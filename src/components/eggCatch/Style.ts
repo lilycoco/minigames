@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from 'styled-components'
 import media from 'styled-media-query'
 
-const fluffy = keyframes`{
+const fluffy = keyframes`
   0% { transform:translateY(0) }
   10% { transform:translateY(0) }
   20% { transform:translateY(-10%) }
@@ -9,36 +9,39 @@ const fluffy = keyframes`{
   30% { transform:translateY(-10%) }
   50% { transform:translateY(0) }
   100% { transform:translateY(0) }
-}`
-const dropEgg = keyframes`{
+`
+const dropEgg = keyframes`
   0% { transform:translateY(0%) }
   30% { transform:translateY(500%) }
   90% { transform:translateY(400%) }
   100% { transform:translateY(500%) }
-}`
-const swing = keyframes`{
+`
+const swing = keyframes`
   0% { transform: rotate(0deg); } 
   20% { transform: rotate(10deg); } 
   40% { transform: rotate(-5deg); } 
   60% { transform: rotate(5deg); } 
   80% { transform: rotate(-5deg); } 
   100% { transform: rotate(0deg); } 
-}`
+`
 
-export const Charactor = styled.img<{ hiyokoStatus: any }>`
+const animation1 = () =>
+  css`
+    ${fluffy} 2s ease infinite;
+  `
+
+export const Charactor = styled.img.attrs((props: any) => ({
+  style: {
+    left: props.hiyokoStatus.left + '%',
+    transform: `scaleX(${props.hiyokoStatus.direction})`,
+  },
+}))<any>`
   width: 25%;
   height: auto;
   position: absolute;
   bottom: 4%;
+  animation: ${(props) => (props.hiyokoStatus.active ? '' : animation1)},
   transform-origin: bottom center;
-  animation: ${({ hiyokoStatus }) =>
-    hiyokoStatus.active
-      ? ''
-      : css`
-          ${fluffy} 2s ease infinite none;
-        `} ;
-  // transform: scale(${(p) => (p.key ? p.key : '-1')}, 1)
-  // animation: ${fluffy} 2.5s ease infinite;
 `
 export const Point = styled.div`
   font-size: 10vw;
@@ -53,10 +56,13 @@ export const Point = styled.div`
   font-size: 5vw;
 `}
 `
-
+const animation2 = () =>
+  css`
+    ${swing} 1s ease 2;
+  `
 export const DroppingEgg = styled.img`
   position: absolute;
   transform-origin: top center;
-  animation: ${swing} 1s ease 2;
+  animation: ${animation2};
   // animation: ${dropEgg} 2s ease both infinite;
 `

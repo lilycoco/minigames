@@ -22,6 +22,7 @@ export const DropEggs = ({ gameRunning }: { gameRunning: boolean }) => {
     intervalRef.current = flowBlock
     return () => {
       clearInterval(intervalRef.current)
+      console.log('😆')
     }
   }, [intervalProcessing])
 
