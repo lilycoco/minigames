@@ -14,6 +14,10 @@ const jump = keyframes`
   50% { transform:translateY(0) }
   100% { transform:translateY(0) }
 `
+const animation1 = () =>
+  css`
+    ${jump} 2s ease infinite;
+  `
 const drop = keyframes`
   0% { transform:translateY(0%) }
   30% { transform:translateY(500%) }
@@ -28,9 +32,9 @@ const swing = keyframes`
   80% { transform: rotate(-5deg); } 
   100% { transform: rotate(0deg); } 
 `
-const animation1 = () =>
+const animation2 = () =>
   css`
-    ${jump} 2s ease infinite;
+    ${swing} 1s ease 2;
   `
 export const Charactor = styled.img.attrs(({ hiyokoStatus }: { hiyokoStatus: HiyokoConfig }) => ({
   style: {
@@ -46,23 +50,6 @@ export const Charactor = styled.img.attrs(({ hiyokoStatus }: { hiyokoStatus: Hiy
     hiyokoStatus.active ? '' : animation1},
   transform-origin: bottom center;
 `
-export const Point = styled.div`
-  font-size: 10vw;
-  height: auto;
-  position: absolute;
-  top: 0;
-  left: 5%;
-  ${media.greaterThan('medium')`
-  font-size: 6vw;
-`}
-  ${media.greaterThan('large')`
-  font-size: 5vw;
-`}
-`
-const animation2 = () =>
-  css`
-    ${swing} 1s ease 2;
-  `
 export const DroppingEgg = styled.img.attrs(({ eggStatus }: { eggStatus: EggConfig }) => ({
   style: {
     top: eggStatus.top + '%',
@@ -76,4 +63,17 @@ export const DroppingEgg = styled.img.attrs(({ eggStatus }: { eggStatus: EggConf
   transform-origin: top center;
   animation: ${animation2};
   // animation: ${drop} 2s ease both infinite;
+`
+export const Point = styled.div`
+  font-size: 10vw;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 5%;
+  ${media.greaterThan('medium')`
+  font-size: 6vw;
+`}
+  ${media.greaterThan('large')`
+  font-size: 5vw;
+`}
 `

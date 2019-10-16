@@ -21,7 +21,6 @@ export const Items = ({ gameRunning }: { gameRunning: boolean }) => {
 
   useEffect(() => {
     console.log(setPoint)
-
     window.addEventListener('keydown', downHandler)
     return () => {
       window.removeEventListener('keydown', downHandler)
