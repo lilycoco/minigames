@@ -6,7 +6,7 @@ import { EggCatch } from './eggCatch/Game'
 const App = () => (
   <Layout>
     <BrowserRouter>
-      <Route exact path='/eggcatch' component={EggCatch} />
+      <Route exact path='/' component={EggCatch} />
     </BrowserRouter>
   </Layout>
 )
