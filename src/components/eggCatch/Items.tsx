@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Charactor, Point } from './Style'
-import hiyoko from '../../static/icon/hiyoko.png'
+import { Charactor } from './Style'
 import { DropEggs } from './DropEggs'
+import hiyoko from '../../static/icon/hiyoko.png'
 
 export const Items = ({ gameRunning }: { gameRunning: boolean }) => {
   const [hiyokoStatus, setHiyokoStatus] = useState({ left: 0, direction: 1, active: false })
-  const [point, setPoint] = useState(5)
 
   const downHandler = ({ key }: KeyboardEvent) => {
     setHiyokoStatus((p) => ({ ...p, active: true }))
@@ -20,7 +19,6 @@ export const Items = ({ gameRunning }: { gameRunning: boolean }) => {
   }
 
   useEffect(() => {
-    console.log(setPoint)
     window.addEventListener('keydown', downHandler)
     return () => {
       window.removeEventListener('keydown', downHandler)
@@ -31,10 +29,6 @@ export const Items = ({ gameRunning }: { gameRunning: boolean }) => {
     <div>
       <DropEggs gameRunning={gameRunning} />
       <Charactor src={hiyoko} alt='hiyoko' hiyokoStatus={hiyokoStatus} />
-      <Point>
-        {point}
-        <span style={{ fontSize: '50%' }}>てん</span>
-      </Point>
     </div>
   )
 }

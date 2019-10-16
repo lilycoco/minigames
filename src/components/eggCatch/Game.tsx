@@ -3,9 +3,11 @@ import { GameContainer } from '../layouts/Style'
 import { TimeGage } from '../layouts/timer/TimeGage'
 import { InfoFilter } from '../layouts/infoFilter/InfoFilter'
 import { Items } from './Items'
+import { Point } from './Style'
 
 export const EggCatch = () => {
   const [gameRunning, setGameRunning] = useState(false)
+  const [point, setPoint] = useState(0)
   const startRef = useRef(0)
 
   const setStartTime = () => {
@@ -18,16 +20,22 @@ export const EggCatch = () => {
     setStartTime()
     toggleRunning()
   }
+  console.log(setPoint)
 
   return (
     <div>
       <GameContainer>
         <Items gameRunning={gameRunning} />
+        <Point>
+          {point}
+          <span style={{ fontSize: '50%' }}>てん</span>
+        </Point>
         {gameRunning || (
           <InfoFilter
             toggleRunning={setset}
             startTime={startRef.current}
             gameStartInfo={'おちてくるたまごをキャッチしよう！'}
+            point={point}
           />
         )}
       </GameContainer>

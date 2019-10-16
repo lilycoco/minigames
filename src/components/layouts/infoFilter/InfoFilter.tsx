@@ -1,15 +1,16 @@
 import React from 'react'
-import { InfoFlame, Info, StartButton, ButtonWrapper, Ramen } from './Style'
-// import ramen from '../../../static/img/ramen.jpg'
+import { InfoFlame, Info, StartButton, ButtonWrapper, RamenImage } from './Style'
 
 export const InfoFilter = ({
   toggleRunning,
   gameStartInfo,
   startTime,
+  point,
 }: {
   toggleRunning: () => void
   gameStartInfo: string
   startTime: number
+  point: number
 }) => (
   <InfoFlame>
     {startTime ? (
@@ -17,9 +18,9 @@ export const InfoFilter = ({
         <Info style={{ marginTop: '8%', lineHeight: '150%' }}>
           できあがり！
           <br />
-          とくてん<span style={{ color: 'red', fontSize: '150%' }}>１０</span>てん
+          とくてん<span style={{ color: 'red', fontSize: '150%' }}>{point}</span>てん
         </Info>
-        <Ramen />
+        <RamenImage />
       </div>
     ) : (
       <ButtonWrapper>

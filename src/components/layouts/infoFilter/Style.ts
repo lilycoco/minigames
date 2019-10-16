@@ -52,7 +52,7 @@ export const Info = styled.p`
     font-size: 4vw;
 `}
 `
-export const Ramen = styled.div`
+export const RamenImage = styled.div`
   background: url(${ramen}) no-repeat;
   background-size: contain;
   overflow: hidden;
