@@ -18,7 +18,8 @@ export const InfoFilter = ({
         <Info style={{ marginTop: '8%', lineHeight: '150%' }}>
           できあがり！
           <br />
-          とくてん<span style={{ color: 'red', fontSize: '150%' }}>{point}</span>てん
+          とくてん<span style={{ color: 'red', fontSize: '150%' }}> {point}</span>
+          <span style={{ fontSize: '70%' }}>てん</span>
         </Info>
         <RamenImage />
       </div>

@@ -3,7 +3,7 @@ import { Charactor } from './Style'
 import { DropEggs } from './DropEggs'
 import hiyoko from '../../static/icon/hiyoko.png'
 
-export const Items = ({ gameRunning }: { gameRunning: boolean }) => {
+export const Items = ({ gameRunning, startTime }: { gameRunning: boolean; startTime: number }) => {
   const [hiyokoStatus, setHiyokoStatus] = useState({ left: 0, direction: 1, active: false })
 
   const downHandler = ({ key }: KeyboardEvent) => {
@@ -27,7 +27,7 @@ export const Items = ({ gameRunning }: { gameRunning: boolean }) => {
 
   return (
     <div>
-      <DropEggs gameRunning={gameRunning} />
+      <DropEggs gameRunning={gameRunning} startTime={startTime} />
       <Charactor src={hiyoko} alt='hiyoko' hiyokoStatus={hiyokoStatus} />
     </div>
   )

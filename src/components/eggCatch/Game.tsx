@@ -25,7 +25,7 @@ export const EggCatch = () => {
   return (
     <div>
       <GameContainer>
-        <Items gameRunning={gameRunning} />
+        <Items gameRunning={gameRunning} startTime={startRef.current} />
         <Point>
           {point}
           <span style={{ fontSize: '50%' }}>てん</span>
