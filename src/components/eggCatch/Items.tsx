@@ -19,7 +19,7 @@ export const Items = ({
   const [startPageX, setStartPageX] = useState(0)
 
   const touchHandle = (e: TouchEvent) => {
-    e.preventDefault()
+    // e.preventDefault()
     setHiyokoStatus((p) => ({ ...p, active: true }))
     const currentPageX = e.changedTouches[0].pageX
     const moveLength = ((currentPageX - startPageX) / PAGE_SIZE) * GAME_PAGE_SIZE
@@ -32,7 +32,10 @@ export const Items = ({
       case 'touchmove':
         setHiyokoStatus((p) => ({
           ...p,
-          left: p.left + moveLength < 75 && p.left + moveLength > 0 ? p.left + moveLength : p.left,
+          left:
+            p.left + moveLength < GAME_PAGE_SIZE && p.left + moveLength > 0
+              ? p.left + moveLength
+              : p.left,
           direction: moveLength > 0 ? -1 : 1,
         }))
         break
@@ -43,13 +46,11 @@ export const Items = ({
 
   useEffect(() => {
     window.addEventListener('touchstart', touchHandle, { passive: false })
-    // window.addEventListener('touchcancel', touchHandle, {passive: false})
     window.addEventListener('touchmove', touchHandle, { passive: false })
     window.addEventListener('touchend', touchHandle, { passive: false })
 
     return () => {
       window.removeEventListener('touchstart', touchHandle)
-      // window.removeEventListener('touchcancel', touchHandle)
       window.removeEventListener('touchmove', touchHandle)
       window.removeEventListener('touchend', touchHandle)
     }
