@@ -4,6 +4,7 @@ import { HiyokoConfig, EggConfig } from '../../models/EggCatch'
 import rawEgg from '../../static/icon/egg.png'
 import droppingEgg from '../../static/icon/egg_0.png'
 import brokenEgg from '../../static/icon/broken_egg_2.png'
+import music from '../../static/icon/music.png'
 
 const jump = keyframes`
   0% { transform:translateY(0) }
@@ -34,14 +35,16 @@ const swing = keyframes`
 `
 const animation2 = () =>
   css`
-    ${swing} 1s ease 2;
+    ${swing} 0.8s ease 2;
   `
-export const Charactor = styled.img.attrs(({ hiyokoStatus }: { hiyokoStatus: HiyokoConfig }) => ({
-  style: {
-    left: hiyokoStatus.left + '%',
-    transform: `scaleX(${hiyokoStatus.direction})`,
-  },
-}))`
+export const MovingCharactor = styled.img.attrs(
+  ({ hiyokoStatus }: { hiyokoStatus: HiyokoConfig }) => ({
+    style: {
+      left: hiyokoStatus.left + '%',
+      transform: `scaleX(${hiyokoStatus.direction})`,
+    },
+  }),
+)`
   width: 25%;
   height: auto;
   position: absolute;
@@ -57,7 +60,13 @@ export const DroppingEgg = styled.img.attrs(({ eggStatus }: { eggStatus: EggConf
     width: eggStatus.dropped ? '15%' : eggStatus.top < 70 ? '15%' : '20%',
     height: eggStatus.dropped ? 'auto' : eggStatus.top < 70 ? '13%' : 'auto',
   },
-  src: eggStatus.dropped ? rawEgg : eggStatus.top < 70 ? droppingEgg : brokenEgg,
+  src: eggStatus.catched
+    ? music
+    : eggStatus.dropped
+    ? rawEgg
+    : eggStatus.top < 70
+    ? droppingEgg
+    : brokenEgg,
 }))<any>`
   position: absolute;
   transform-origin: top center;

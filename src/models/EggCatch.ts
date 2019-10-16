@@ -8,4 +8,5 @@ export interface EggConfig {
   top: number
   left: number
   dropped: boolean
+  catched: boolean
 }

@@ -2,12 +2,12 @@ import React from 'react'
 import { InfoFlame, Info, StartButton, ButtonWrapper, RamenImage } from './Style'
 
 export const InfoFilter = ({
-  toggleRunning,
+  startGame,
   gameStartInfo,
   startTime,
   point,
 }: {
-  toggleRunning: () => void
+  startGame: () => void
   gameStartInfo: string
   startTime: number
   point: number
@@ -25,7 +25,7 @@ export const InfoFilter = ({
       </div>
     ) : (
       <ButtonWrapper>
-        <StartButton onClick={toggleRunning}>スタート</StartButton>
+        <StartButton onClick={startGame}>スタート</StartButton>
         <Info>{gameStartInfo}</Info>
       </ButtonWrapper>
     )}
