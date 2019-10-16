@@ -31,14 +31,7 @@ export const Items = ({ gameRunning }: { gameRunning: boolean }) => {
   return (
     <div>
       <DropEggs gameRunning={gameRunning} />
-      <Charactor
-        src={hiyoko}
-        alt='hiyoko'
-        // transform: scale(${(p) => (p.key ? p.key : '-1')}, 1)
-        // animation: ${fluffy} 2.5s ease infinite;
-        // animation: ${dropEgg} 2s ease both infinite;
-        hiyokoStatus={hiyokoStatus}
-      />
+      <Charactor src={hiyoko} alt='hiyoko' hiyokoStatus={hiyokoStatus} />
       <Point>
         {point}
         <span style={{ fontSize: '50%' }}>てん</span>
