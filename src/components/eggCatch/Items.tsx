@@ -48,7 +48,6 @@ export const Items = ({
     window.addEventListener('touchstart', touchHandle, { passive: false })
     window.addEventListener('touchmove', touchHandle, { passive: false })
     window.addEventListener('touchend', touchHandle, { passive: false })
-
     return () => {
       window.removeEventListener('touchstart', touchHandle)
       window.removeEventListener('touchmove', touchHandle)

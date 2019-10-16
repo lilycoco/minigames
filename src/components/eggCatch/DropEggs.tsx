@@ -26,7 +26,6 @@ export const DropEggs = ({
         const currentEggStatus = eggStatus.slice()
         eggStatus.map((egg, index) => {
           const { top, left, dropped } = egg
-
           if (!dropped) {
             if (top < 60) {
               currentEggStatus.splice(index, 1, { ...egg, top: top + 1 })
