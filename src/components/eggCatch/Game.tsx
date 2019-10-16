@@ -8,9 +8,15 @@ export const EggCatch = () => {
   const [gameRunning, setGameRunning] = useState(false)
   const startRef = useRef(0)
 
-  const toggleRunning = () => {
+  const setStartTime = () => {
     startRef.current = Date.now()
+  }
+  const toggleRunning = () => {
     setGameRunning(!gameRunning)
+  }
+  const setset = () => {
+    setStartTime()
+    toggleRunning()
   }
 
   return (
@@ -19,7 +25,8 @@ export const EggCatch = () => {
         <Items gameRunning={gameRunning} />
         {gameRunning || (
           <InfoFilter
-            toggleRunning={toggleRunning}
+            toggleRunning={setset}
+            startTime={startRef.current}
             gameStartInfo={'おちてくるたまごをキャッチしよう！'}
           />
         )}

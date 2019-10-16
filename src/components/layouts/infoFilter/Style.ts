@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 import media from 'styled-media-query'
+import ramen from '../../../static/img/ramen2.jpg'
 
 export const InfoFlame = styled.div`
   position: absolute;
+  text-align: center;
   top: 0;
   right: 0;
   bottom: 0;
@@ -49,4 +51,14 @@ export const Info = styled.p`
   ${media.greaterThan('medium')`
     font-size: 4vw;
 `}
+`
+export const Ramen = styled.div`
+  background: url(${ramen}) no-repeat;
+  background-size: contain;
+  overflow: hidden;
+  position: absolute;
+  top: 38%;
+  right: 15%;
+  bottom: 10%;
+  left: 15%;
 `
