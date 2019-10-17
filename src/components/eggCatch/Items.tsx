@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { MovingCharactor } from './Style'
 import hiyoko from '../../static/icon/hiyoko.png'
 import { DropEggs } from './DropEggs'
@@ -18,31 +18,35 @@ export const Items = ({
   const [hiyokoStatus, setHiyokoStatus] = useState({ left: 0, direction: 1, active: false })
   const [startPageX, setStartPageX] = useState(0)
 
-  const touchHandle = (e: TouchEvent) => {
-    e.preventDefault()
-    setHiyokoStatus((p) => ({ ...p, active: true }))
-    const currentPageX = e.changedTouches[0].pageX
-    const moveLength = ((currentPageX - startPageX) / PAGE_SIZE) * GAME_PAGE_SIZE
+  const touchHandle = useCallback(
+    (e: TouchEvent) => {
+      e.preventDefault()
+      setHiyokoStatus((p) => ({ ...p, active: true }))
+      const currentPageX = e.changedTouches[0].pageX
+      const moveLength = ((currentPageX - startPageX) / PAGE_SIZE) * GAME_PAGE_SIZE
 
-    switch (e.type) {
-      case 'touchstart':
-        setHiyokoStatus((p) => ({ ...p, active: true }))
-        setStartPageX(currentPageX)
-        break
-      case 'touchmove':
-        setHiyokoStatus((p) => ({
-          ...p,
-          left:
-            p.left + moveLength < GAME_PAGE_SIZE && p.left + moveLength > 0
-              ? p.left + moveLength
-              : p.left,
-          direction: moveLength > 0 ? -1 : 1,
-        }))
-        break
-      case 'touchend':
-        setHiyokoStatus((p) => ({ ...p, active: false }))
-    }
-  }
+      switch (e.type) {
+        case 'touchstart':
+          setHiyokoStatus((p) => ({ ...p, active: true }))
+          setStartPageX(currentPageX)
+          break
+        case 'touchmove':
+          setStartPageX(currentPageX)
+          setHiyokoStatus((p) => ({
+            ...p,
+            left:
+              p.left + moveLength < GAME_PAGE_SIZE && p.left + moveLength > 0
+                ? p.left + moveLength
+                : p.left,
+            direction: moveLength > 0 ? -1 : 1,
+          }))
+          break
+        case 'touchend':
+          setHiyokoStatus((p) => ({ ...p, active: false }))
+      }
+    },
+    [startPageX],
+  )
 
   useEffect(() => {
     window.addEventListener('touchstart', touchHandle, { passive: false })
@@ -53,7 +57,7 @@ export const Items = ({
       window.removeEventListener('touchmove', touchHandle)
       window.removeEventListener('touchend', touchHandle)
     }
-  }, [startPageX])
+  }, [startPageX, touchHandle])
 
   return (
     <div>
