@@ -19,7 +19,7 @@ export const Items = ({
   const [startPageX, setStartPageX] = useState(0)
 
   const touchHandle = (e: TouchEvent) => {
-    // e.preventDefault()
+    e.preventDefault()
     setHiyokoStatus((p) => ({ ...p, active: true }))
     const currentPageX = e.changedTouches[0].pageX
     const moveLength = ((currentPageX - startPageX) / PAGE_SIZE) * GAME_PAGE_SIZE

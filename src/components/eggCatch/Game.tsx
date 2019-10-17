@@ -30,16 +30,19 @@ export const EggCatch = () => {
   return (
     <div>
       <GameContainer>
-        <Items
-          gameRunning={gameRunning}
-          startTime={startRef.current}
-          addOrReducePoint={(point: number) => addOrReducePoint(point)}
-        />
-        <Point>
-          {point}
-          <span style={{ fontSize: '50%' }}>てん</span>
-        </Point>
-        {gameRunning || (
+        {gameRunning ? (
+          <div>
+            <Items
+              gameRunning={gameRunning}
+              startTime={startRef.current}
+              addOrReducePoint={(point: number) => addOrReducePoint(point)}
+            />
+            <Point>
+              {point}
+              <span style={{ fontSize: '50%' }}>てん</span>
+            </Point>
+          </div>
+        ) : (
           <InfoFilter
             startGame={startGame}
             startTime={startRef.current}

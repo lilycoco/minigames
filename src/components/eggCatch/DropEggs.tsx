@@ -42,7 +42,7 @@ export const DropEggs = ({
             }
           }
         })
-        if (duration % 20 === 1) {
+        if (duration % 30 === 1) {
           currentEggStatus.push(initialEggState)
         }
         setEggStatus(currentEggStatus)
