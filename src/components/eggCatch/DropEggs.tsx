@@ -19,7 +19,7 @@ export const DropEggs = ({
   addOrReducePoint: (point: number) => void
   hiyokoLeft: number
 }) => {
-  const eggLeft = Math.floor(Math.random() * (GAME_PAGE_RATIO - EGG_WIDTH + 5))
+  const eggLeft = Math.floor(Math.random() * (GAME_PAGE_RATIO - EGG_WIDTH - 5))
   const initialEggState = { top: 0, left: eggLeft, dropped: false, catched: false }
   const [eggStatus, setEggStatus] = useState([initialEggState])
   const [duration, setDuration] = useState(0)
