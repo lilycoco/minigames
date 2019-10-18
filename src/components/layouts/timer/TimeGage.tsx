@@ -20,27 +20,20 @@ export const TimeGage = ({
 }) => {
   const [duration, setDuration] = useState(0)
 
-  // const gifTiming = [
-  //   { minTime: 0, maxTime: 5, left: 0, src: gakki1 },
-  //   { minTime: 30, maxTime: 35, left: 0, src: gakki2 },
-  //   { minTime: 50, maxTime: 55, left: 0, src: gakki3 },
-  //   { minTime: 80, maxTime: 85, left: 0, src: gakki4 },
-  //   { minTime: 95, maxTime: 100, left: 0, src: gakki5 },
-  // ]
+  const gifTiming = [
+    { from: 0, till: 5, left: 0, src: gakki1 },
+    { from: 30, till: 35, left: 20, src: gakki2 },
+    { from: 50, till: 55, left: 30, src: gakki3 },
+    { from: 80, till: 85, left: 60, src: gakki4 },
+    { from: 95, till: 100, left: 70, src: gakki5 },
+  ]
 
-  const addGif = () => {
-    if (duration > 0 && duration < 5) {
-      return <Gif src={gakki1} alt='gakki' style={{ left: '0' }} />
-    } else if (duration > 30 && duration < 35) {
-      return <Gif src={gakki2} alt='gakki' style={{ left: '20%' }} />
-    } else if (duration > 50 && duration < 55) {
-      return <Gif src={gakki3} alt='gakki' style={{ left: '30%' }} />
-    } else if (duration > 80 && duration < 85) {
-      return <Gif src={gakki4} alt='gakki' style={{ left: '60%' }} />
-    } else if (duration > 95 && duration < 100) {
-      return <Gif src={gakki5} alt='gakki' style={{ left: '70%' }} />
-    }
-  }
+  const addGif = () =>
+    gifTiming.map((p) => {
+      if (duration > p.from && duration < p.till) {
+        return <Gif src={p.src} key={p.left} alt='gakki' style={{ left: p.left + '%' }} />
+      }
+    })
 
   useEffect(() => {
     if (gameRunning) {

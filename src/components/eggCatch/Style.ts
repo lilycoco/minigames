@@ -1,10 +1,8 @@
 import styled, { css, keyframes } from 'styled-components'
 import media from 'styled-media-query'
 import { HiyokoConfig, EggConfig } from '../../models/EggCatch'
-import rawEgg from '../../static/icon/egg.png'
 import droppingEgg from '../../static/icon/egg_0.png'
 import brokenEgg from '../../static/icon/broken_egg_2.png'
-import music from '../../static/icon/music.png'
 
 export const HIYOKO_SIZE = 15
 export const EGG_SIZE = 10
@@ -24,7 +22,7 @@ const animation1 = () =>
   css`
     ${jump} 2s ease infinite;
   `
-const drop = keyframes`
+const bound = keyframes`
   0% { transform:translateY(0%) }
   30% { transform:translateY(500%) }
   90% { transform:translateY(400%) }
@@ -65,18 +63,17 @@ export const DroppingEgg = styled.img.attrs(({ eggStatus }: { eggStatus: EggConf
     width: eggStatus.top < 70 ? '15%' : '20%',
     height: eggStatus.top < 70 ? '13%' : 'auto',
   },
-  src: eggStatus.catched ? music : eggStatus.top < 70 ? droppingEgg : brokenEgg,
+  src: eggStatus.top < 70 ? droppingEgg : brokenEgg,
 }))<any>`
   position: absolute;
   transform-origin: top center;
   animation: ${animation2};
-  // animation: ${drop} 2s ease both infinite;
+  // animation: ${bound} 2s ease both infinite;
 `
 export const DropedEgg = styled.img.attrs(({ eggStatus }: { eggStatus: EggConfig }) => ({
   style: {
     left: eggStatus.left + '%',
   },
-  src: eggStatus.catched ? music : rawEgg,
 }))<any>`
   top: ${MAX_TOP}%;
   width: 15%;

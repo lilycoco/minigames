@@ -7,11 +7,9 @@ const PAGE_SIZE = 420
 const GAME_PAGE_SIZE = 75
 
 export const Items = ({
-  gameRunning,
   startTime,
   addOrReducePoint,
 }: {
-  gameRunning: boolean
   startTime: number
   addOrReducePoint: (point: number) => void
 }) => {
@@ -24,9 +22,10 @@ export const Items = ({
       setHiyokoStatus((p) => ({ ...p, active: true }))
       const currentPageX = e.changedTouches[0].pageX
       const moveLength = ((currentPageX - startPageX) / PAGE_SIZE) * GAME_PAGE_SIZE
-
+      console.log(e.changedTouches[0])
       switch (e.type) {
         case 'touchstart':
+          setStartPageX(currentPageX)
           setHiyokoStatus((p) => ({ ...p, active: true }))
           break
         case 'touchmove':
@@ -61,7 +60,6 @@ export const Items = ({
   return (
     <div>
       <DropEggs
-        gameRunning={gameRunning}
         startTime={startTime}
         addOrReducePoint={(point) => addOrReducePoint(point)}
         hiyokoLeft={hiyokoStatus.left}

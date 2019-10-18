@@ -33,7 +33,6 @@ export const EggCatch = () => {
         {gameRunning ? (
           <div>
             <Items
-              gameRunning={gameRunning}
               startTime={startRef.current}
               addOrReducePoint={(point: number) => addOrReducePoint(point)}
             />
