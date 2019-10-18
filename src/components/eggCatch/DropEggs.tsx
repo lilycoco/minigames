@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { DroppingEgg, DropedEgg } from './Style'
-
-const HIYOKO_SIZE = 15
-const EGG_SIZE = 10
+import { DroppingEgg, DropedEgg, HIYOKO_SIZE, EGG_SIZE, MAX_TOP, HIYOKO_HEIGHT } from './Style'
 
 export const DropEggs = ({
   gameRunning,
@@ -20,26 +17,30 @@ export const DropEggs = ({
   const [eggStatus, setEggStatus] = useState([initialEggState])
   const [duration, setDuration] = useState(0)
 
+  const judgeEggCatched = (top: number, left: number) =>
+    !!(
+      top >= MAX_TOP - HIYOKO_HEIGHT &&
+      top < MAX_TOP &&
+      (hiyokoLeft - EGG_SIZE < left && hiyokoLeft + HIYOKO_SIZE > left)
+    )
+
   useEffect(() => {
     if (gameRunning) {
-      const test = () => {
+      const dropEggs = () => {
         const currentEggStatus = eggStatus.slice()
-        eggStatus.map((egg, index) => {
+        eggStatus.forEach((egg, index) => {
           const { top, left, dropped } = egg
-          if (!dropped) {
-            if (top < 60) {
-              currentEggStatus.splice(index, 1, { ...egg, top: top + 1 })
-            } else if (top >= 60 && top < 82) {
-              if (hiyokoLeft - EGG_SIZE < left && hiyokoLeft + HIYOKO_SIZE > left) {
-                currentEggStatus.splice(index, 1, { ...egg, dropped: true, catched: true })
-                addOrReducePoint(1)
-              } else {
-                currentEggStatus.splice(index, 1, { ...egg, top: top + 1 })
-              }
-            } else {
-              currentEggStatus.splice(index, 1, { ...egg, dropped: true })
-              addOrReducePoint(-1)
+          if (dropped) return
+          if (top < MAX_TOP) {
+            currentEggStatus[index].top = top + 1
+            if (judgeEggCatched(top, left)) {
+              currentEggStatus[index].dropped = true
+              currentEggStatus[index].catched = true
+              addOrReducePoint(1)
             }
+          } else {
+            currentEggStatus[index].dropped = true
+            addOrReducePoint(-1)
           }
         })
         if (duration % 30 === 1) {
@@ -47,9 +48,8 @@ export const DropEggs = ({
         }
         setEggStatus(currentEggStatus)
       }
-
       requestAnimationFrame(() => {
-        test()
+        dropEggs()
         setDuration(() => Date.now() - startTime)
       })
     }

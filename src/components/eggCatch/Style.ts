@@ -6,6 +6,11 @@ import droppingEgg from '../../static/icon/egg_0.png'
 import brokenEgg from '../../static/icon/broken_egg_2.png'
 import music from '../../static/icon/music.png'
 
+export const HIYOKO_SIZE = 15
+export const EGG_SIZE = 10
+export const MAX_TOP = 82
+export const HIYOKO_HEIGHT = 22
+
 const jump = keyframes`
   0% { transform:translateY(0) }
   10% { transform:translateY(0) }
@@ -73,7 +78,7 @@ export const DropedEgg = styled.img.attrs(({ eggStatus }: { eggStatus: EggConfig
   },
   src: eggStatus.catched ? music : rawEgg,
 }))<any>`
-  top: 82%;
+  top: ${MAX_TOP}%;
   width: 15%;
   height: auto;
   position: absolute;
