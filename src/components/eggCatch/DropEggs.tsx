@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { DroppingEgg } from './Style'
+import { DroppingEgg, DropedEgg } from './Style'
 
 const HIYOKO_SIZE = 15
 const EGG_SIZE = 10
@@ -55,20 +55,21 @@ export const DropEggs = ({
     }
   }, [gameRunning, duration])
 
-  const droppingEggs = eggStatus.slice().filter((x) => !x.dropped)
-  const droppedEggs = useMemo(() => {
-    return eggStatus
-      .filter((x) => x.dropped && !x.catched)
-      .map((egg, index) => (
-        <DroppingEgg alt='droppingEgg' key={`dropped${index}`} eggStatus={egg} />
-      ))
-  }, [eggStatus.filter((x) => x.dropped && !x.catched).length])
+  const droppingEggs = eggStatus
+    .filter((x) => !x.dropped)
+    .map((egg, index) => <DroppingEgg alt='droppingEgg' key={index} eggStatus={egg} />)
+
+  const droppedEggs = useMemo(
+    () =>
+      eggStatus
+        .filter((x) => x.dropped && !x.catched)
+        .map((egg, index) => <DropedEgg alt='droppingEgg' key={index} eggStatus={egg} />),
+    [eggStatus.filter((x) => x.dropped && !x.catched).length],
+  )
 
   return (
     <div>
-      {droppingEggs.map((egg, index) => (
-        <DroppingEgg alt='droppingEgg' key={index} eggStatus={egg} />
-      ))}
+      {droppingEggs}
       {droppedEggs}
     </div>
   )

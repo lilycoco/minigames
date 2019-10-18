@@ -57,21 +57,27 @@ export const DroppingEgg = styled.img.attrs(({ eggStatus }: { eggStatus: EggConf
   style: {
     top: eggStatus.top + '%',
     left: eggStatus.left + '%',
-    width: eggStatus.dropped ? '15%' : eggStatus.top < 70 ? '15%' : '20%',
-    height: eggStatus.dropped ? 'auto' : eggStatus.top < 70 ? '13%' : 'auto',
+    width: eggStatus.top < 70 ? '15%' : '20%',
+    height: eggStatus.top < 70 ? '13%' : 'auto',
   },
-  src: eggStatus.catched
-    ? music
-    : eggStatus.dropped
-    ? rawEgg
-    : eggStatus.top < 70
-    ? droppingEgg
-    : brokenEgg,
+  src: eggStatus.catched ? music : eggStatus.top < 70 ? droppingEgg : brokenEgg,
 }))<any>`
   position: absolute;
   transform-origin: top center;
   animation: ${animation2};
   // animation: ${drop} 2s ease both infinite;
+`
+export const DropedEgg = styled.img.attrs(({ eggStatus }: { eggStatus: EggConfig }) => ({
+  style: {
+    left: eggStatus.left + '%',
+  },
+  src: eggStatus.catched ? music : rawEgg,
+}))<any>`
+  top: 82%;
+  width: 15%;
+  height: auto;
+  position: absolute;
+  transform-origin: top center;
 `
 export const Point = styled.div`
   font-size: 10vw;
