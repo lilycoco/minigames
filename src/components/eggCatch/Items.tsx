@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { MovingCharactor } from './Style'
+import { MovingCharactor, HIYOKO_WIDTH } from './Style'
 import { DropEggs } from './DropEggs'
 import hiyoko from '../../static/icon/hiyoko.png'
 
-const PAGE_SIZE = 420
-const GAME_PAGE_SIZE = 75
+const PAGE_SIZE = document.documentElement.clientWidth
+const GAME_PAGE_SIZE = 100
 
 export const Items = ({
   startTime,
@@ -33,7 +33,7 @@ export const Items = ({
           setHiyokoStatus((p) => ({
             ...p,
             left:
-              p.left + moveLength < GAME_PAGE_SIZE && p.left + moveLength > 0
+              p.left + moveLength < GAME_PAGE_SIZE - HIYOKO_WIDTH && p.left + moveLength > 0
                 ? p.left + moveLength
                 : p.left,
             direction: moveLength > 0 ? -1 : 1,
