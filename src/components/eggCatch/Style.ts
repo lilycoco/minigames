@@ -4,11 +4,11 @@ import { HiyokoConfig, EggConfig } from '../../models/EggCatch'
 import droppingEgg from '../../static/icon/egg_0.png'
 import brokenEgg from '../../static/icon/broken_egg_2.png'
 
-export const HIYOKO_SIZE = 15
-export const EGG_SIZE = 10
 export const MAX_TOP = 82
+export const GAME_PAGE_RATIO = 100
 export const HIYOKO_HEIGHT = 22
-export const HIYOKO_WIDTH = 25
+export const HIYOKO_WIDTH = 20
+export const EGG_WIDTH = 10
 
 const jump = keyframes`
   0% { transform:translateY(0) }

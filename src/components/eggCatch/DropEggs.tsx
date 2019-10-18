@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { DroppingEgg, DropedEgg, HIYOKO_SIZE, EGG_SIZE, MAX_TOP, HIYOKO_HEIGHT } from './Style'
+import {
+  DroppingEgg,
+  DropedEgg,
+  HIYOKO_WIDTH,
+  EGG_WIDTH,
+  MAX_TOP,
+  HIYOKO_HEIGHT,
+  GAME_PAGE_RATIO,
+} from './Style'
 import rawEgg from '../../static/icon/egg.png'
 
 export const DropEggs = ({
@@ -11,7 +19,7 @@ export const DropEggs = ({
   addOrReducePoint: (point: number) => void
   hiyokoLeft: number
 }) => {
-  const eggLeft = Math.floor(Math.random() * 85)
+  const eggLeft = Math.floor(Math.random() * (GAME_PAGE_RATIO - EGG_WIDTH + 5))
   const initialEggState = { top: 0, left: eggLeft, dropped: false, catched: false }
   const [eggStatus, setEggStatus] = useState([initialEggState])
   const [duration, setDuration] = useState(0)
@@ -20,7 +28,7 @@ export const DropEggs = ({
     !!(
       top >= MAX_TOP - HIYOKO_HEIGHT &&
       top < MAX_TOP &&
-      (hiyokoLeft - EGG_SIZE < left && hiyokoLeft + HIYOKO_SIZE > left)
+      (hiyokoLeft - EGG_WIDTH < left && hiyokoLeft + HIYOKO_WIDTH > left)
     )
 
   useEffect(() => {
