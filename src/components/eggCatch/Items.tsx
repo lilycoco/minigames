@@ -3,9 +3,6 @@ import { MovingCharactor, HIYOKO_WIDTH } from './Style'
 import { DropEggs } from './DropEggs'
 import hiyoko from '../../static/icon/hiyoko.png'
 
-const PAGE_SIZE = document.documentElement.clientWidth
-const GAME_PAGE_SIZE = 100
-
 export const Items = ({
   startTime,
   addOrReducePoint,
@@ -15,13 +12,16 @@ export const Items = ({
 }) => {
   const [hiyokoStatus, setHiyokoStatus] = useState({ left: 0, direction: 1, active: false })
   const [startPageX, setStartPageX] = useState(0)
+  const pageSize = document.documentElement.clientWidth
+  const gamePageSize = pageSize < 500 ? pageSize - 30 : pageSize - (pageSize - 470)
+  const gamePageRatio = 100
 
   const touchHandle = useCallback(
     (e: TouchEvent) => {
       e.preventDefault()
       setHiyokoStatus((p) => ({ ...p, active: true }))
       const currentPageX = e.changedTouches[0].pageX
-      const moveLength = ((currentPageX - startPageX) / PAGE_SIZE) * GAME_PAGE_SIZE
+      const moveLength = ((currentPageX - startPageX) / gamePageSize) * gamePageRatio
       console.log(e.changedTouches[0])
       switch (e.type) {
         case 'touchstart':
@@ -33,7 +33,7 @@ export const Items = ({
           setHiyokoStatus((p) => ({
             ...p,
             left:
-              p.left + moveLength < GAME_PAGE_SIZE - HIYOKO_WIDTH && p.left + moveLength > 0
+              p.left + moveLength < gamePageRatio - HIYOKO_WIDTH && p.left + moveLength > 0
                 ? p.left + moveLength
                 : p.left,
             direction: moveLength > 0 ? -1 : 1,
