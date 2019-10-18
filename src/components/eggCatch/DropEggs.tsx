@@ -31,17 +31,17 @@ export const DropEggs = ({
         eggStatus.forEach((egg, index) => {
           const { top, left, dropped } = egg
           if (dropped) return
-          if (top < MAX_TOP) {
-            currentEggStatus[index].top = top + 1
-            if (judgeEggCatched(top, left)) {
-              currentEggStatus[index].dropped = true
-              currentEggStatus[index].catched = true
-              addOrReducePoint(1)
-            }
-          } else {
+          if (top >= MAX_TOP) {
             currentEggStatus[index].dropped = true
             addOrReducePoint(-1)
+            return
           }
+          if (judgeEggCatched(top, left)) {
+            currentEggStatus[index].dropped = true
+            currentEggStatus[index].catched = true
+            addOrReducePoint(1)
+          }
+          currentEggStatus[index].top = top + 1
         })
         if (duration % 30 === 1) {
           currentEggStatus.push(initialEggState)
