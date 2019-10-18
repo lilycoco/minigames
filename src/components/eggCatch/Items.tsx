@@ -21,7 +21,6 @@ export const Items = ({
       setHiyokoStatus((p) => ({ ...p, active: true }))
       const currentPageX = e.changedTouches[0].pageX
       const moveLength = ((currentPageX - startPageX) / gamePageSize) * GAME_PAGE_RATIO
-      console.log(e.changedTouches[0])
       switch (e.type) {
         case 'touchstart':
           setStartPageX(currentPageX)
