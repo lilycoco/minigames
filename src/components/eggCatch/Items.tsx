@@ -13,7 +13,7 @@ export const Items = ({
   const [hiyokoStatus, setHiyokoStatus] = useState({ left: 0, direction: 1, active: false })
   const [startPageX, setStartPageX] = useState(0)
   const pageSize = document.documentElement.clientWidth
-  const gamePageSize = pageSize < 500 ? pageSize - 30 : pageSize - (pageSize - 470)
+  const gamePageSize = pageSize < 530 ? pageSize - 30 : pageSize - (pageSize - 470)
 
   const touchHandle = useCallback(
     (e: TouchEvent) => {
