@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { MovingCharactor } from './Style'
-import hiyoko from '../../static/icon/hiyoko.png'
 import { DropEggs } from './DropEggs'
+import hiyoko from '../../static/icon/hiyoko.png'
 
 const PAGE_SIZE = 420
 const GAME_PAGE_SIZE = 75
@@ -28,7 +28,6 @@ export const Items = ({
       switch (e.type) {
         case 'touchstart':
           setHiyokoStatus((p) => ({ ...p, active: true }))
-          setStartPageX(currentPageX)
           break
         case 'touchmove':
           setStartPageX(currentPageX)

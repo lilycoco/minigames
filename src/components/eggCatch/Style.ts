@@ -40,7 +40,7 @@ const swing = keyframes`
 `
 const animation2 = () =>
   css`
-    ${swing} 0.8s ease 2;
+    ${swing} 0.8s ease infinite;
   `
 export const MovingCharactor = styled.img.attrs(
   ({ hiyokoStatus }: { hiyokoStatus: HiyokoConfig }) => ({
