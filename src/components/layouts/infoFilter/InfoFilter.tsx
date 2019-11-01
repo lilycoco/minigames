@@ -1,6 +1,19 @@
 import React from 'react'
-import { InfoFlame, Info, StartButton, ButtonWrapper, RamenImage } from './Style'
-
+import {
+  InfoFlame,
+  Info,
+  StartButton,
+  ButtonWrapper,
+  RamenImage,
+  PointList,
+  Eggs,
+  Point,
+  EggContainer,
+} from './Style'
+import droppingEgg0 from '../../../static/icon/egg_0.png'
+import droppingEgg1 from '../../../static/icon/egg_1.png'
+import droppingEgg2 from '../../../static/icon/egg_2.png'
+import droppingEgg3 from '../../../static/icon/egg_3.png'
 export const InfoFilter = ({
   startGame,
   gameStartInfo,
@@ -25,8 +38,26 @@ export const InfoFilter = ({
       </div>
     ) : (
       <ButtonWrapper>
-        <StartButton onClick={startGame}>スタート</StartButton>
         <Info>{gameStartInfo}</Info>
+        <PointList>
+          <EggContainer>
+            <Eggs src={droppingEgg0} alt='droppingEgg0' />
+            <Point>1てん</Point>
+          </EggContainer>
+          <EggContainer>
+            <Eggs src={droppingEgg1} alt='droppingEgg1' />
+            <Point>2てん</Point>
+          </EggContainer>
+          <EggContainer>
+            <Eggs src={droppingEgg2} alt='droppingEgg2' />
+            <Point>3てん</Point>
+          </EggContainer>
+          <EggContainer>
+            <Eggs src={droppingEgg3} alt='droppingEgg3' />
+            <Point>4てん</Point>
+          </EggContainer>
+        </PointList>
+        <StartButton onClick={startGame}>スタート</StartButton>
       </ButtonWrapper>
     )}
   </InfoFlame>

@@ -62,3 +62,29 @@ export const RamenImage = styled.div`
   bottom: 10%;
   left: 15%;
 `
+export const PointList = styled.div`
+  box-shadow: 0 0 8px gray;
+  background-color: white;
+  display: flex;
+  width: 75vw;
+  max-width: 400px;
+  height: 20vw;
+  max-height: 106px;
+  border-radius: 1.5vw;
+  align-items: center;
+  margin-bottom: 5vw;
+`
+export const EggContainer = styled.div`
+  width: 100%;
+  height: 80%;
+`
+export const Eggs = styled.img`
+  width: 70%;
+  height: 65%;
+`
+export const Point = styled.div`
+  font-size: 5vw;
+  ${media.greaterThan('medium')`
+    font-size: 2vw;
+`}
+`

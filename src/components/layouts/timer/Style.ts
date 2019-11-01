@@ -20,7 +20,6 @@ export const Gif = styled.img`
   width: 30%;
   position: absolute;
 `
-
 const flash = keyframes`
   0% { opacity:1 }
   50% { opacity:0 }
@@ -49,11 +48,10 @@ export const Timer = styled.div`
 `}
 `
 export const MinuteLine = styled.div`
-  width: 8px;
-  background-color: red;
+  width: 5px;
+  background-color: #7f1b00;
   height: 12px;
   margin: 0;
   position: absolute;
   top: 0;
-  left: 33%;
 `
