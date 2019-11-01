@@ -3,7 +3,6 @@ import media from 'styled-media-query'
 
 export const GageBorder = styled.div`
   width: 100%;
-  height: 20p;
   background-color: white;
   border: solid 4px #7f1b00;
   border-radius: 10px;
@@ -48,4 +47,13 @@ export const Timer = styled.div`
   ${media.greaterThan('large')`
     font-size: 6vw;
 `}
+`
+export const MinuteLine = styled.div`
+  width: 8px;
+  background-color: red;
+  height: 12px;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 33%;
 `

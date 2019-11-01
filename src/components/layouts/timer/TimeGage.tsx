@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { GageBorder, GageLine, Gif, Timer } from './Style'
+import { GageBorder, GageLine, Gif, Timer, MinuteLine } from './Style'
 import gakki1 from '../../../static/gif/gakki_1.gif'
 import gakki2 from '../../../static/gif/gakki_2.gif'
 import gakki3 from '../../../static/gif/gakki_3.gif'
@@ -64,6 +64,8 @@ export const TimeGage = ({
     <div style={{ padding: '10px 15px 100px', margin: '20px 0 0' }}>
       <GageBorder>
         <GageLine style={{ width: duration + '%' }} />
+        <MinuteLine style={{ left: '33%' }} />
+        <MinuteLine style={{ left: '66%' }} />
         {addGif()}
         {addTimer()}
       </GageBorder>
