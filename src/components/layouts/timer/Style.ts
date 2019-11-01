@@ -1,4 +1,5 @@
-import styled from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
+import media from 'styled-media-query'
 
 export const GageBorder = styled.div`
   width: 100%;
@@ -19,4 +20,32 @@ export const GageLine = styled.div`
 export const Gif = styled.img`
   width: 30%;
   position: absolute;
+`
+
+const flash = keyframes`
+  0% { opacity:1 }
+  50% { opacity:0 }
+  100% { opacity:1 }
+`
+const animation1 = () =>
+  css`
+    ${flash} 2s 1s linear infinite;
+  `
+export const Timer = styled.div`
+  position: absolute;
+  text-align: center;
+  top: 300%;
+  left: 75%;
+  transform: translateY(-50%) translateX(-50%);
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  font-size: 10vw;
+  color: red;
+  white-space: nowrap;
+  animation: ${animation1};
+  ${media.greaterThan('medium')`
+    font-size: 3vw;
+`}
+  ${media.greaterThan('large')`
+    font-size: 6vw;
+`}
 `

@@ -6,19 +6,19 @@ export const HeaderWrapper = styled.div`
 `
 export const LogoWrapper = styled.div`
   max-width: 300px;
-  margin: 3% auto;
+  margin: 2% auto;
   ${media.greaterThan('medium')`
-    margin: 1% auto;
+    margin: 0.5% auto;
   `}
 `
 export const TopIcon = styled.img`
   display: block;
-  width: 20%;
+  width: 15%;
   height: auto;
   object-fit: cover;
   margin: 0 auto;
   ${media.greaterThan('medium')`
-    width: 25%;
+    width: 20%;
   `}
 `
 export const HeaderTitle = styled.p`
@@ -26,7 +26,7 @@ export const HeaderTitle = styled.p`
   margin: 0;
   text-align: center !important;
   ${media.greaterThan('medium')`
-    font-size: 2.8vw;
+    font-size: 2vw;
   `}
   ${media.greaterThan('large')`
     font-size: 2vw;
