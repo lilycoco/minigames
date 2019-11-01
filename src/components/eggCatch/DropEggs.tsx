@@ -24,7 +24,8 @@ export const DropEggs = ({
   const initialEggState = { top: 0, left: eggLeft, dropped: false, catched: false, color: eggColor }
   const [eggStatus, setEggStatus] = useState([initialEggState])
   const [duration, setDuration] = useState(0)
-
+  const animationFrame =
+    window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.setTimeout
   const judgeEggCatched = (top: number, left: number) =>
     !!(
       top >= MAX_TOP - HIYOKO_HEIGHT &&
@@ -55,7 +56,7 @@ export const DropEggs = ({
       }
       setEggStatus(currentEggStatus)
     }
-    requestAnimationFrame(() => {
+    animationFrame(() => {
       dropEggs()
       setDuration(() => Date.now() - startTime)
     })
