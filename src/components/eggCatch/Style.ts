@@ -1,7 +1,10 @@
 import styled, { css, keyframes } from 'styled-components'
 import media from 'styled-media-query'
 import { HiyokoConfig, EggConfig } from '../../models/EggCatch'
-import droppingEgg from '../../static/icon/egg_0.png'
+import droppingEgg0 from '../../static/icon/egg_0.png'
+import droppingEgg1 from '../../static/icon/egg_1.png'
+import droppingEgg2 from '../../static/icon/egg_2.png'
+import droppingEgg3 from '../../static/icon/egg_3.png'
 import brokenEgg from '../../static/icon/broken_egg_2.png'
 
 export const MAX_TOP = 82
@@ -9,6 +12,8 @@ export const GAME_PAGE_RATIO = 100
 export const HIYOKO_HEIGHT = 22
 export const HIYOKO_WIDTH = 20
 export const EGG_WIDTH = 10
+
+const droppingEggs = [droppingEgg0, droppingEgg1, droppingEgg2, droppingEgg3]
 
 const jump = keyframes`
   0% { transform:translateY(0) }
@@ -64,7 +69,7 @@ export const DroppingEgg = styled.img.attrs(({ eggStatus }: { eggStatus: EggConf
     width: eggStatus.top < 70 ? '15%' : '20%',
     height: eggStatus.top < 70 ? '13%' : 'auto',
   },
-  src: eggStatus.top < 70 ? droppingEgg : brokenEgg,
+  src: eggStatus.top < 70 ? droppingEggs[eggStatus.color] : brokenEgg,
 }))<any>`
   position: absolute;
   transform-origin: top center;

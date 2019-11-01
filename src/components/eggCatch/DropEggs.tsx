@@ -20,7 +20,8 @@ export const DropEggs = ({
   hiyokoLeft: number
 }) => {
   const eggLeft = Math.floor(Math.random() * (GAME_PAGE_RATIO - EGG_WIDTH - 5))
-  const initialEggState = { top: 0, left: eggLeft, dropped: false, catched: false }
+  const eggColor = Math.floor(Math.random() * 4)
+  const initialEggState = { top: 0, left: eggLeft, dropped: false, catched: false, color: eggColor }
   const [eggStatus, setEggStatus] = useState([initialEggState])
   const [duration, setDuration] = useState(0)
 
@@ -35,17 +36,17 @@ export const DropEggs = ({
     const dropEggs = () => {
       const currentEggStatus = eggStatus.slice()
       eggStatus.forEach((egg, index) => {
-        const { top, left, dropped } = egg
+        const { top, left, dropped, color } = egg
         if (dropped) return
         if (top >= MAX_TOP) {
           currentEggStatus[index].dropped = true
-          addOrReducePoint(-1)
+          addOrReducePoint(-color - 1)
           return
         }
         if (judgeEggCatched(top, left)) {
           currentEggStatus[index].dropped = true
           currentEggStatus[index].catched = true
-          addOrReducePoint(1)
+          addOrReducePoint(color + 1)
         }
         currentEggStatus[index].top = top + 1
       })

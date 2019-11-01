@@ -9,4 +9,5 @@ export interface EggConfig {
   left: number
   dropped: boolean
   catched: boolean
+  color: number
 }
