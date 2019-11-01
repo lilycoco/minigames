@@ -22,7 +22,7 @@ export const TimeGage = ({
 
   const gifTiming = [
     { from: 0, till: 5, left: 0, src: gakki1 },
-    { from: 20, till: 23, left: 20, src: gakki2 },
+    { from: 20, till: 23, left: 10, src: gakki2 },
     { from: 45, till: 48, left: 30, src: gakki3 },
     { from: 70, till: 73, left: 60, src: gakki4 },
     { from: 90, till: 93, left: 70, src: gakki5 },
