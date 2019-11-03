@@ -32,7 +32,7 @@ export const DropEggs = ({
       top < MAX_TOP &&
       (hiyokoLeft - EGG_WIDTH < left && hiyokoLeft + HIYOKO_WIDTH > left)
     )
-  const addEggs = () => Math.floor(Math.random() * 5) === 1
+  const addEggs = () => Math.floor(Math.random() * 25) === 1
 
   useEffect(() => {
     const dropEggs = () => {
@@ -52,7 +52,7 @@ export const DropEggs = ({
         }
         currentEggStatus[index].top = top + 1
       })
-      if (addEggs) {
+      if (addEggs()) {
         currentEggStatus.push(initialEggState)
       }
       setEggStatus(currentEggStatus)
